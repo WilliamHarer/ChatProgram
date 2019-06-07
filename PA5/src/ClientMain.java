@@ -27,13 +27,5 @@ public class ClientMain {
 		fc.setScanner(fromGarbage);
 		tc.start();
 		fc.start();
-		/*if(!fromSelf.hasNextLine()) {
-			try{ s.close();
-			
-			}
-			catch(Exception e) {
-				System.out.println("YARRRRRR"+e);
-			}
-		}*/
 	}
 }
