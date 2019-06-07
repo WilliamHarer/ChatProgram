@@ -1,6 +1,5 @@
 import java.io.PrintWriter;
 import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -9,7 +8,6 @@ public class ClientMain {
 		ToClient tc=new ToClient();
 		FromClient fc=new FromClient();
 		InetAddress localH;
-		ServerSocket garbageChat;
 		Socket s;
 		PrintWriter toGarbage;
 		Scanner fromSelf,fromGarbage;
@@ -29,21 +27,13 @@ public class ClientMain {
 		fc.setScanner(fromGarbage);
 		tc.start();
 		fc.start();
-		if(!fromSelf.hasNextLine()) {
+		/*if(!fromSelf.hasNextLine()) {
 			try{ s.close();
 			
 			}
 			catch(Exception e) {
 				System.out.println("YARRRRRR"+e);
 			}
-		}
-		/*while (fromSelf.hasNextLine()) {
-			String temp=(fromSelf.nextLine()+"? uWu");
-			toGarbage.println(temp);
-			toGarbage.flush();
-			//System.out.println("Message received: <"+temp + ">");
-			temp=fromGarbage.nextLine();
-			System.out.println("Received message: <" + temp + ">");
-		} */
+		}*/
 	}
 }
