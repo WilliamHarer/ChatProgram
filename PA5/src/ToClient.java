@@ -10,8 +10,12 @@ public class ToClient extends Thread {
 		while(true) {
 			try{
 				if (dis.available()>0) {
-				Byte b=dis.readByte();
-				s
+				
+				//Byte b=dis.readByte();
+				garbageBin.println(fromGarbage.nextLine());
+				garbageBin.flush();
+				//System.out.print(b);
+				
 				}
 			}	
 			catch(Exception e) {
