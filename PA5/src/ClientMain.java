@@ -23,9 +23,12 @@ public class ClientMain {
 			System.out.println("Your trash socket had issues"+e);
 			return;
 		}
+		fc.setSocket(s);
 		tc.setPW(toGarbage);
 		fc.setScanner(fromGarbage);
 		tc.start();
 		fc.start();
+		System.out.println("finished");
+		
 	}
 }

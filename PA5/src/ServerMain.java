@@ -5,37 +5,39 @@ import java.util.Scanner;
 
 public class ServerMain {
 	public static void main(String args[]) {
-		ToClient tc=new ToClient();
-		FromClient fc=new FromClient();
-				
 		ServerSocket garbageChat;
 		Socket s;
+		try {
+			garbageChat= new ServerSocket(1221);
+			s=garbageChat.accept();
+		}
+		catch(Exception e) {
+			System.out.println("server creation error"+e);
+			return;
+		}
+		
+		ToClient tc=new ToClient();
+		FromClient fc=new FromClient();
+		
+			
 		PrintWriter toGarbage;
 		Scanner fromSelf,fromGarbage;
 		fromSelf=new Scanner(System.in);
 		try{
-			garbageChat= new ServerSocket(1221);
-			s=garbageChat.accept();
 			fromGarbage=new Scanner(s.getInputStream());
 			toGarbage=new PrintWriter(s.getOutputStream());
 		}
 		catch(Exception e) {
 			System.out.println("Your trash socket had issues"+e);
+			fromSelf.close();
 			return;
 		}
 		tc.setPW(toGarbage);
 		fc.setScanner(fromGarbage);
+		fc.setSocket(s);
 		tc.start();
 		fc.start();
-		/*while (fromSelf.hasNextLine()) {
-			String temp=(fromSelf.nextLine()+"? uWu");
-			toGarbage.println(temp);
-			toGarbage.flush();
-			//System.out.println("Message received: <"+temp + ">");
-			temp=fromGarbage.nextLine();
-			System.out.println("Received message: <" + temp + ">");
-		} */
-		 
+		
 	}
 }
 
