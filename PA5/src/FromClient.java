@@ -10,11 +10,13 @@ public class FromClient extends Thread {
 	
 		}
 		try{
+			System.out.println("Closing:");
 			s.close();
 		}
 		catch(Exception e) {
 			System.out.println("error closing socket"+e);
 		}
+		return;
 	}
 	public void setSocket(Socket x) {
 		s=x;

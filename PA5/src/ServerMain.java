@@ -15,7 +15,6 @@ public class ServerMain {
 			System.out.println("server creation error"+e);
 			return;
 		}
-		
 		ToClient tc=new ToClient();
 		FromClient fc=new FromClient();
 		
@@ -37,7 +36,31 @@ public class ServerMain {
 		fc.setSocket(s);
 		tc.start();
 		fc.start();
-		
+		while(true) {
+			
+			if(s.isClosed()) {
+				tc.setFlag(false);
+				tc=new ToClient();
+				fc=new FromClient();
+				fromSelf=new Scanner(System.in);
+				try {
+					s=garbageChat.accept();
+					fromGarbage=new Scanner(s.getInputStream());
+					toGarbage=new PrintWriter(s.getOutputStream());
+				}
+				catch(Exception e) {
+					System.out.println("Your trash socket had issues"+e);
+					fromSelf.close();
+					return;
+				}
+				tc.setPW(toGarbage);
+				fc.setScanner(fromGarbage);
+				fc.setSocket(s);
+				
+				tc.start();
+				fc.start();
+			}
+		}
 	}
 }
 
