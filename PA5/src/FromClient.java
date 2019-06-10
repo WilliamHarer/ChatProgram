@@ -1,6 +1,8 @@
 import java.net.Socket;
 import java.util.Scanner;
-
+//CSE223 WilliamHarer/DavidKriss for Professor N.Macias
+//Receive output, reads the socket output without decrypting used by the server
+//for a full description read ClientDecryptor, as they are nearly identical.
 public class FromClient extends Thread {
 	Scanner nastyStuff;
 	Socket s;
@@ -10,7 +12,6 @@ public class FromClient extends Thread {
 	
 		}
 		try{
-			System.out.println("Closing:");
 			s.close();
 		}
 		catch(Exception e) {
